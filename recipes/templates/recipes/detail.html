@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ recipe.name }}</h1>
+    <div class="row">
+        <div class="col" style="background-color:red;">{{recipe.cuisine}}</div>
+    </div>
+    <img src="{{recipe.image.url}}" class="img" alt="Carbonara" width="304" height="236">
+    <div class="container-fluid">
+        <h3>Difficulty</h3>
+        <h4>{{ recipe.difficulty }}/10</h4>
+    </div>
+    <h2>Ingredients</h2>
+    <ul class="list-group">
+        {% for ingredient in recipe.ingredient_set.all %}
+            <li class="list-group-item">{{ingredient.name}}--{{ingredient.amount}}</li>
+        {%endfor%}
+    </ul>
+    <iframe width="800" height="600"
+            src="{{recipe.video}}" frameborder="0" allowfullscreen></iframe>
+    <h2>Instructions</h2>
+    <p class="lead">{{recipe.instructions}}</p>
+</div>
+{% endblock %}
